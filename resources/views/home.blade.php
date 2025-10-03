@@ -5,7 +5,7 @@
         </div>
     @endif
     @if (session('error'))
-        <div class="alert alert-error mb-0">
+        <div class="alert alert-danger mb-0">
             {{ session('error') }}
         </div>
     @endif
@@ -21,10 +21,14 @@
     <div class="container mx-auto my-0">
         <h1 class="text-center mb-xl-5" style="font-weight: bold; font-size: 3rem;">Articles</h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-6">
             @foreach ($posts as $post)
                 <livewire:article :id="$post->id" />
             @endforeach
+
+            @if($posts->isEmpty())
+                <p class="text-center col-span-full">No articles found.</p> 
+            @endif
         </div>
     </div>
 </div>

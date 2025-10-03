@@ -21,6 +21,8 @@
             }
         </style>
 
+        <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
+
         @yield('styles')
     </head>
     <body>
@@ -43,7 +45,7 @@
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-sm">Register</a>
+                    <a href="{{ route('register') }}" class="btn btn-light btn-sm">Register</a>
                 @endauth
             </div>
         </nav>

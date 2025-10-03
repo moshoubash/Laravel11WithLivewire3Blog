@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostForm extends Component
 {
@@ -17,8 +18,6 @@ class PostForm extends Component
 
     public function submit()
     {
-        dd($this->title, $this->content);
-        // Validate input
         $this->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -35,7 +34,8 @@ class PostForm extends Component
             'title' => $this->title, 
             'content' => $this->content,
             'created_at' => now(),
-            'photo' => $json['photos'][rand(1, 9)]['src']['original']
+            'photo' => $json['photos'][rand(1, 9)]['src']['original'],
+            'user_id' => Auth::id(),
         ]);
 
         $this->reset(['title', 'content']);

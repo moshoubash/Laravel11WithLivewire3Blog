@@ -13,6 +13,10 @@ class PostDetails extends Component
     {
         $post = Post::find($id);
         if ($post) {
+            if($post->user_id !== auth()->id()) {
+                session()->flash('error', 'You are not authorized to delete this post.');
+                return redirect()->route('home');
+            }
             $post->delete();
             session()->flash('message', 'Post deleted successfully.');
             return redirect()->route('home');
@@ -25,6 +29,15 @@ class PostDetails extends Component
     public function mount($id)
     {
         $this->post = Post::find($id);
+
+        
+        if (!$this->post) {
+            session()->flash('error', 'Post not found.');
+            return redirect()->route('home');
+        }
+        
+        $this->post->views += 1;
+        $this->post->save();
     }
 
     public function render()

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('photo')->nullable();
+            $table->integer('views')->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamp('created_at')->useCurrent();
         });
     }
