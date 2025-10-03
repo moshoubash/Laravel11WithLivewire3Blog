@@ -1,1 +1,0 @@
-<livewire:post-form />

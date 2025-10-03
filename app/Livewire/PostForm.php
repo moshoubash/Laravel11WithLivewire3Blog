@@ -4,12 +4,17 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
+use Illuminate\Support\Facades\Http;
 
 class PostForm extends Component
 {
     public $title;
     public $content;
     public $created_at;
+
+    public $res;
+    public $image;
+
 
     public function submit()
     {
@@ -18,13 +23,24 @@ class PostForm extends Component
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
+        
+        $res = Http::withHeaders([
+            'Authorization' => 'wYgiwyCCAPg4bKzqVbhRjPj4yC1ma1q4xzzrZJu7nMqwsE0jHtjDV5Py',
+            'Content-Type' => 'application/json'
+        ])->get('https://api.pexels.com/v1/search?query=code&per_page=10');
+        
+        $json = $res->json();
 
         Post::create([
             'title' => $this->title, 
-            'content' => $this->content
+            'content' => $this->content,
+            'created_at' => now(),
+            'photo' => $json['photos'][rand(1, 9)]['src']['original']
         ]);
 
         $this->reset(['title', 'content']);
+
+        return redirect()->to('/');
     }
 
 
