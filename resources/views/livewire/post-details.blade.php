@@ -9,13 +9,14 @@
                 <button class="btn btn-danger btn-sm">
                     <i class="fa fa-trash"></i> Delete
                 </button>
+                <a href="/post/{{ $post->id }}/edit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-edit"></i> Edit
+                </a>
             </form>
         @endif
     @endauth
-    <p class="text-center mb-6 text-lg text-gray-600"><i class="fa fa-eye"></i> {{ $post->views }} -
-        {{ $post->created_at }}</p>
     
-    
+    <p class="text-center mb-6 text-lg text-gray-600"><i class="fa fa-eye"></i> {{ $post->views }} - {{ $post->created_at }}</p>
 
     <img src="{{ $post->photo }}" alt="Post Image" class="mx-auto mb-6 object-cover rounded-lg max-w-5xl">
 

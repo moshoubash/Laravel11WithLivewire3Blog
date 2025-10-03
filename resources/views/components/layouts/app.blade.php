@@ -41,7 +41,7 @@
                     <span class="me-2">Welcome, {{ auth()->user()->name }}!</span>
                     <form action="/logout" method="POST" class="d-inline">
                         @csrf
-                        <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                        <button type="submit" class="btn btn-danger btn-sm">Logout</button>
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>

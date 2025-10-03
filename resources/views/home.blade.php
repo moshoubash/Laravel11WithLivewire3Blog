@@ -9,10 +9,16 @@
             {{ session('error') }}
         </div>
     @endif
+    @if (session('success'))
+        <div class="alert alert-success mb-0">
+            {{ session('success') }}
+        </div>
+    @endif
+
 
     <div class="text-center bg-gray-800 text-white mb-10">
         <div class="max-w-full px-6 py-20 text-center">
-            <h1 class="text-5xl font-bold">Start writing and reading</h1>
+            <h1 class="text-5xl font-bold">Start writing <span class="bg-white text-gray-800 px-2 rounded">NOW</span></h1>
             <p class="py-6">This is the home page of our application. Explore the features and enjoy your stay!</p>
             <a href="/post/create" class="btn btn-primary">Write Now</a>
         </div>

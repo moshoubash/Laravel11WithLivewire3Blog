@@ -43,6 +43,10 @@ class PostForm extends Component
         return redirect()->to('/');
     }
 
+    public function edit($id) {
+        $post = Post::find($id);
+        return view('livewire.post-edit', compact('post'));
+    }
 
     public function render()
     {
