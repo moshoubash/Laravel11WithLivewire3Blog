@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 class PostForm extends Component
 {
@@ -13,11 +14,10 @@ class PostForm extends Component
     public $created_at;
 
     public $res;
-    public $image;
-
 
     public function submit()
     {
+        dd($this->title, $this->content);
         // Validate input
         $this->validate([
             'title' => 'required|string|max:255',

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{{ $title ?? 'Page Title' }}</title>
+        <title>{{ $title ?? 'Home' }}</title>
 
         <!-- Fonts -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -20,6 +20,8 @@
                 font-family: 'SUSE Mono', monospace;
             }
         </style>
+
+        @yield('styles')
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white p-3 mb-3 d-flex justify-content-between" style="margin-bottom: 0 !important;">
@@ -29,6 +31,21 @@
                 <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
             </ul>
+            
+            {{-- authentication buttons --}}
+
+            <div>
+                @auth
+                    <span class="me-2">Welcome, {{ auth()->user()->name }}!</span>
+                    <form action="/logout" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-outline-light btn-sm">Register</a>
+                @endauth
+            </div>
         </nav>
         <div class="bg-gray-200">
             {{ $slot }}
@@ -36,5 +53,7 @@
         <footer class="bg-dark text-white text-center p-3 mt-3" style="margin-top: 0 !important;">
             &copy; {{ date('Y') }} Blog
         </footer>
+
+        @yield('scripts')
     </body>
 </html>

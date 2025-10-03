@@ -1,16 +1,16 @@
 <div>
     @if (session('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mb-0">
             {{ session('message') }}
         </div>
     @endif
     @if (session('error'))
-        <div class="alert alert-error">
+        <div class="alert alert-error mb-0">
             {{ session('error') }}
         </div>
     @endif
 
-    <div class="text-center">
+    <div class="text-center bg-gray-800 text-white mb-10">
         <div class="max-w-full px-6 py-20 text-center">
             <h1 class="text-5xl font-bold">Start writing and reading</h1>
             <p class="py-6">This is the home page of our application. Explore the features and enjoy your stay!</p>

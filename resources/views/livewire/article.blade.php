@@ -1,5 +1,5 @@
 <div class="card p-2 mb-4 border rounded-lg shadow-sm">
-    <div class="overflow-hidden h-64 rounded-lg">
+    <div class=" rounded-lg">
         <img src="{{ $post->photo }}" alt="Post Image" class="object-cover rounded-lg" />
     </div>
 
