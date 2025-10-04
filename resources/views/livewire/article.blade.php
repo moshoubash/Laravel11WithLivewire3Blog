@@ -11,7 +11,8 @@
                 ... <a href="/post/{{ $post->id }}" class="text-blue-500 hover:underline">Read more</a>
             @endif
         </p>
-        <p class="text-gray-500"> <i class="fa fa-calendar"></i> {{ $post->created_at }} by <i class="fa fa-user"></i> {{ $post->user->name }}</p>
+        <p class="text-gray-500"> <i class="fa fa-calendar"></i> {{ $post->created_at }}</p>
+        <p class="text-gray-500"><i class="fa fa-user"></i> {{ $post->user->name }}</p>
         <p class="text-gray-500"><i class="fa fa-eye"></i> {{ $post->views }} views</p>
         <p class="text-gray-500"><i class="fa fa-tag"></i> {{ $post->category->name }}</p>
     </div>

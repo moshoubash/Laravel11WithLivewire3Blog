@@ -15,6 +15,7 @@ class SearchResults extends Component
                     join('users', 'posts.user_id', '=', 'users.id')->
                     where('posts.title', 'like', '%' . $q . '%')->
                     orWhere('categories.name', 'like', '%' . $q . '%')->
+                    orWhere('users.name', 'like', '%' . $q . '%')->
                     select('posts.*', 'categories.name as category_name', 'users.name as user_name')->
                     get();
 

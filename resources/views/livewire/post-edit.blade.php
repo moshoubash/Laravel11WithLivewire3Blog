@@ -7,5 +7,12 @@
         {{ $content }}
     </textarea>
 
+    <select wire:model="category_id" class="form-control p-2 w-full mb-2 text-gray-500">
+        <option value="">Select Category</option>
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}" @if ($category->id == $category_id) selected @endif>{{ $category->name }}</option>
+        @endforeach
+    </select>
+
     <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white p-2">Update</button>
 </form>
