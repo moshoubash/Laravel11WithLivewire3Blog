@@ -4,9 +4,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostEdit extends Component
 {

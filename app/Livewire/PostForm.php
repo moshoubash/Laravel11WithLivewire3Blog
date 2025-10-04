@@ -5,7 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 class PostForm extends Component
@@ -13,8 +13,14 @@ class PostForm extends Component
     public $title;
     public $content;
     public $created_at;
+    public $categories;
+    public $category_id;
 
     public $res;
+
+    public function mount() {
+        $this->categories = Category::all();
+    }
 
     public function submit()
     {
@@ -30,26 +36,31 @@ class PostForm extends Component
         
         $json = $res->json();
 
-        Post::create([
+        $post = Post::create([
             'title' => $this->title, 
             'content' => $this->content,
             'created_at' => now(),
             'photo' => $json['photos'][rand(1, 9)]['src']['original'],
             'user_id' => Auth::id(),
+            'category_id' => $this->category_id
         ]);
 
-        $this->reset(['title', 'content']);
+        $category = Category::find($this->category_id);
+    
+        if($category){
+            $post->category()->associate($category);
+            $post->save();
+        }
+
+        $this->reset(['title', 'content', 'category_id']);
 
         return redirect()->to('/');
     }
 
-    public function edit($id) {
-        $post = Post::find($id);
-        return view('livewire.post-edit', compact('post'));
-    }
-
     public function render()
     {
-        return view('livewire.post-form');
+        return view('livewire.post-form', [
+            'categories' => $this->categories
+        ]);
     }
 }

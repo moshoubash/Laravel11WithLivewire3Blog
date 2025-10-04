@@ -5,10 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{{ $title ?? 'Home' }}</title>
-
-        <!-- Fonts -->
+        
+        <!-- Styles -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         
+        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
@@ -28,17 +29,17 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white p-3 mb-3 d-flex justify-content-between" style="margin-bottom: 0 !important;">
             <a href="{{ route('home') }}">Home</a>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav flex-row gap-3">
                 <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Link 4</a></li>
             </ul>
             
             {{-- authentication buttons --}}
 
             <div>
                 @auth
-                    <span class="me-2">Welcome, {{ auth()->user()->name }}!</span>
                     <form action="/logout" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="btn btn-danger btn-sm">Logout</button>

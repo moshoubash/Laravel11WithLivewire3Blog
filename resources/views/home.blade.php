@@ -29,7 +29,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-6">
             @foreach ($posts as $post)
-                <livewire:article :id="$post->id" />
+                <livewire:article key="{{ $post->id }}" :id="$post->id" />
             @endforeach
 
             @if($posts->isEmpty())

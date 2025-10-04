@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->integer('views')->default(0);
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamp('created_at')->useCurrent();
         });
     }
