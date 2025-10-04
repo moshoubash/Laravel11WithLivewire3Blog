@@ -32,7 +32,7 @@
             
             {{-- search bar --}}
             <livewire:search-bar />
-            
+
             {{-- authentication buttons --}}
             <div>
                 @auth

@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Post;
+use App\Models\Like;
 
 class PostDetails extends Component
 {
     public $post;
+    public $likes = 0;
+    public $isLiked = false;
 
     public function delete($id)
     {
@@ -29,8 +32,9 @@ class PostDetails extends Component
     public function mount($id)
     {
         $this->post = Post::find($id);
+        $this->isLiked = $this->post->likes()->where('user_id', auth()->id())->exists();
+        $this->likes = $this->post->likes()->count();
 
-        
         if (!$this->post) {
             session()->flash('error', 'Post not found.');
             return redirect()->route('home');
@@ -38,6 +42,24 @@ class PostDetails extends Component
         
         $this->post->views += 1;
         $this->post->save();
+    }
+
+    public function like(){
+        Like::create([
+            'user_id' => auth()->id(),
+            'post_id' => $this->post->id,
+            'created_at' => now()
+        ]);
+
+        $this->post->save();
+        return redirect()->route('post.details', ['id' => $this->post->id]);
+    }
+
+    public function unlike(){
+        $this->post->likes()->where('user_id', auth()->id())->delete();
+        $this->post->save();
+
+        return redirect()->route('post.details', ['id' => $this->post->id]);
     }
 
     public function render()

@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Http;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostForm extends Component
 {
@@ -39,6 +40,7 @@ class PostForm extends Component
         $post = Post::create([
             'title' => $this->title, 
             'content' => $this->content,
+            'slug' => Str::slug($this->title),
             'created_at' => now(),
             'photo' => $json['photos'][rand(1, 9)]['src']['original'],
             'user_id' => Auth::id(),

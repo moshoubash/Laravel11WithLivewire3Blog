@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class PostEdit extends Component
 {
@@ -37,6 +38,7 @@ class PostEdit extends Component
         ]);
         
         $this->post->title = $this->title;
+        $this->post->slug = Str::slug($this->title);
         $this->post->content = $this->content;
         $this->post->category_id = $this->category_id;
         $this->post->save();
