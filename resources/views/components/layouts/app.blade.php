@@ -29,15 +29,11 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white p-3 mb-3 d-flex justify-content-between" style="margin-bottom: 0 !important;">
             <a href="{{ route('home') }}">Home</a>
-            <ul class="navbar-nav flex-row gap-3">
-                <li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link 2</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link 3</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link 4</a></li>
-            </ul>
+            
+            {{-- search bar --}}
+            <livewire:search-bar />
             
             {{-- authentication buttons --}}
-
             <div>
                 @auth
                     <form action="/logout" method="POST" class="d-inline">
