@@ -1,12 +1,14 @@
 <?php
 
 use App\Models\User;
+use App\Events\UserRegistered;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -32,7 +34,9 @@ new #[Layout('layouts.guest')] class extends Component
 
         Auth::login($user);
 
-        $this->redirect(route('home', absolute: false), navigate: true);
+        event(new UserRegistered(Auth::user()));
+
+        redirect()->route('home');
     }
 }; ?>
 

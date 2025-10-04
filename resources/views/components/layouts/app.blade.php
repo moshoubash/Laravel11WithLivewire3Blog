@@ -28,7 +28,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white p-3 mb-3 d-flex justify-content-between" style="margin-bottom: 0 !important;">
-            <a href="{{ route('home') }}">Home</a>
+            <a class="navbar-brand fw-bold" href="{{ route('home') }}">Home</a>
             
             {{-- search bar --}}
             <livewire:search-bar />
@@ -42,7 +42,7 @@
                     </form>
                 @else
                     <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-light btn-sm">Register</a>
+                    <a href="{{ route('register') }}" class="btn bg-blue-600 hover:bg-blue-700 text-white btn-sm">Register</a>
                 @endauth
             </div>
         </nav>

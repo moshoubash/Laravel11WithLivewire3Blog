@@ -15,5 +15,6 @@
         <p class="text-gray-500"><i class="fa fa-user"></i> {{ $post->user->name }}</p>
         <p class="text-gray-500"><i class="fa fa-eye"></i> {{ $post->views }} views</p>
         <p class="text-gray-500"><i class="fa fa-tag"></i> {{ $post->category->name }}</p>
+        <p class="text-gray-500"><i class="fa fa-heart"></i> {{ $post->likes->count() }} likes</p>
     </div>
 </div>

@@ -20,7 +20,7 @@
         <div class="max-w-full px-6 py-20 text-center">
             <h1 class="text-5xl font-bold">Start writing <span class="bg-white text-gray-800 px-2 rounded">NOW</span></h1>
             <p class="py-6">This is the home page of our application. Explore the features and enjoy your stay!</p>
-            <a href="/post/create" class="btn btn-primary">Write Now</a>
+            <a href="/post/create" class="btn bg-blue-600 hover:bg-blue-700 text-white">Write Now</a>
         </div>
     </div>
 
