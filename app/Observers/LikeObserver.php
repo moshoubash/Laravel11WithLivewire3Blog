@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Like;
+use App\Notifications\LikeNotification;
 
 class LikeObserver
 {
@@ -11,8 +12,11 @@ class LikeObserver
      */
     public function created(Like $like): void
     {
-        // $user = User::find($post->user_id);
-        // Mail::to($user->email)->send(new WelcomeMessage($user));
+        $postAuthor = $like->post->user;
+        $likeUser = $like->user;
+        $post = $like->post;
+
+        $postAuthor->notify(new LikeNotification($postAuthor, $likeUser, $post));
     }
 
     /**

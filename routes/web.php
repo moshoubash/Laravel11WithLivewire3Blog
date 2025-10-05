@@ -6,6 +6,7 @@ use App\Livewire\PostDetails;
 use App\Livewire\PostForm;
 use App\Livewire\PostEdit;
 use App\Livewire\SearchResults;
+use App\Livewire\Notifications;
 
 Route::get('/', Home::class)->name('home');
 
@@ -16,6 +17,8 @@ Route::get('/post/{slug}', PostDetails::class)->name('post.details');
 Route::get('/post/{slug}/edit', PostEdit::class)->name('post.edit')->middleware('auth');
 
 Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
+
+Route::get('/notifications', Notifications::class)->name('notifications')->middleware('auth');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
