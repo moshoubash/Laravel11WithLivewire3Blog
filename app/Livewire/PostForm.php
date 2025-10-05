@@ -8,14 +8,21 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
 
-class PostForm extends Component
+    class PostForm extends Component
 {
+    // use WithFileUploads;
+
     public $title;
     public $content;
     public $created_at;
     public $categories;
     public $category_id;
+    
+    // #[Validate('image|mimes:jpg,png,jpeg,gif,svg|max:1024')]
+    // public $photo;
 
     public $res;
 
@@ -42,7 +49,7 @@ class PostForm extends Component
             'content' => $this->content,
             'slug' => Str::slug($this->title),
             'created_at' => now(),
-            'photo' => $json['photos'][rand(1, 9)]['src']['original'],
+            'photo' => $json['photos'][0]['src']['original'],
             'user_id' => Auth::id(),
             'category_id' => $this->category_id
         ]);

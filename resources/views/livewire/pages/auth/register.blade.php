@@ -34,7 +34,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         Auth::login($user);
 
-        event(new UserRegistered(Auth::user()));
+        // event(new UserRegistered(Auth::user()));
 
         redirect()->route('home');
     }

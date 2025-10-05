@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use App\Models\Post;
-use App\Policies\PostPolicy;
+use App\Models\Like;
+use App\Observers\LikeObserver;
 use Illuminate\Support\Facades\Event;
+use App\Events\UserRegistered;
+use App\Listeners\SendWelcomeMessage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(\App\Events\UserRegistered::class, [\App\Listeners\SendWelcomeMessage::class, 'handle']);
+        Event::listen(UserRegistered::class, [SendWelcomeMessage::class, 'handle']);
+
+        Like::observe(LikeObserver::class);
     }
 }

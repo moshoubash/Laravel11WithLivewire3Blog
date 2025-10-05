@@ -12,13 +12,17 @@ class PostDetails extends Component
     public $likes = 0;
     public $isLiked = false;
 
-    public function delete($id)
+    public function delete($slug)
     {
-        $post = Post::find($id);
+        $post = Post::where('slug', $slug)->first();
         if ($post) {
             if($post->user_id !== auth()->id()) {
                 session()->flash('error', 'You are not authorized to delete this post.');
                 return redirect()->route('home');
+            }
+            else if($post->likes()->count() > 0) {
+                session()->flash('error', 'Post cannot be deleted because it has likes.');
+                return back();
             }
             $post->delete();
             session()->flash('message', 'Post deleted successfully.');
@@ -29,9 +33,9 @@ class PostDetails extends Component
         }
     }
 
-    public function mount($id)
+    public function mount($slug)
     {
-        $this->post = Post::find($id);
+        $this->post = Post::where('slug', $slug)->first();
         $this->isLiked = $this->post->likes()->where('user_id', auth()->id())->exists();
         $this->likes = $this->post->likes()->count();
 
@@ -52,14 +56,14 @@ class PostDetails extends Component
         ]);
 
         $this->post->save();
-        return redirect()->route('post.details', ['id' => $this->post->id]);
+        return redirect()->route('post.details', ['slug' => $this->post->slug]);
     }
 
     public function unlike(){
         $this->post->likes()->where('user_id', auth()->id())->delete();
         $this->post->save();
 
-        return redirect()->route('post.details', ['id' => $this->post->id]);
+        return redirect()->route('post.details', ['slug' => $this->post->slug]);
     }
 
     public function render()

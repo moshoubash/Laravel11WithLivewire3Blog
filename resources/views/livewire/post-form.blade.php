@@ -13,5 +13,7 @@
         @endforeach
     </select>
 
+    {{-- <input type="file" wire:model="photo" class="form-control px-3 py-2 w-full mb-2 text-gray-500 bg-white" /> --}}
+
     <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white p-2">Submit</button>
 </form>

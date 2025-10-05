@@ -18,15 +18,13 @@ class PostEdit extends Component
 
     public $res;
 
-    public function mount($id){
-        $post = Post::find($id);
+    public function mount($slug){
+        $this->post = Post::where('slug', $slug)->first();
         $this->categories = Category::all();
 
-        $this->title = $post->title;
-        $this->content = $post->content;
-        $this->category_id = $post->category_id;
-
-        $this->post = $post;
+        $this->title = $this->post->title;
+        $this->content = $this->post->content;
+        $this->category_id = $this->post->category_id;
     }
 
     public function submit()

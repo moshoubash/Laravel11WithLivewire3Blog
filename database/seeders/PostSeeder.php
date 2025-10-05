@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
             'content' => 'This is the first post',
             'user_id' => 1,
             'category_id' => 1,
-            'views' => 123,
+            'views' => 213,
             'photo' => 'https://placehold.co/1366x768'
         ]);
 
@@ -28,7 +28,7 @@ class PostSeeder extends Seeder
             'content' => 'This is the second post',
             'user_id' => 1,
             'category_id' => 1,
-            'views' => 123,
+            'views' => 141,
             'photo' => 'https://placehold.co/1366x768'
         ]);
 
@@ -38,7 +38,7 @@ class PostSeeder extends Seeder
             'content' => 'This is the third post',
             'user_id' => 1,
             'category_id' => 1,
-            'views' => 123,
+            'views' => 103,
             'photo' => 'https://placehold.co/1366x768'
         ]);
 
@@ -48,7 +48,7 @@ class PostSeeder extends Seeder
             'content' => 'This is the fourth post',
             'user_id' => 1,
             'category_id' => 1,
-            'views' => 123,
+            'views' => 412,
             'photo' => 'https://placehold.co/1366x768'
         ]);
     }
