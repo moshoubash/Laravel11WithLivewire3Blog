@@ -53,8 +53,15 @@ class LikeNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return [
-            'message' => $this->user->name . ' liked your post "' . $this->post->title . '"',
-        ];
+        if ($this->author->id === $this->user->id) {
+            return [
+                'message' => 'You like your post "' . $this->post->title . '"',
+            ];
+        }
+        else{
+            return [
+                'message' => $this->user->name . ' liked your post "' . $this->post->title . '"',
+            ];
+        }
     }
 }

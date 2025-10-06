@@ -20,7 +20,9 @@
     <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:ital,wght@0,100..800;1,100..800&display=swap"
         rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(
+        ['resources/css/app.css', 'resources/js/app.js']
+    )
 
     <style>
         body {

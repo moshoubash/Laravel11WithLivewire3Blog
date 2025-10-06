@@ -56,14 +56,15 @@ class PostDetails extends Component
         ]);
 
         $this->post->save();
-        return redirect()->route('post.details', ['slug' => $this->post->slug]);
+        $this->likes = $this->post->likes()->count();
+        $this->isLiked = true;
     }
 
     public function unlike(){
         $this->post->likes()->where('user_id', auth()->id())->delete();
         $this->post->save();
-
-        return redirect()->route('post.details', ['slug' => $this->post->slug]);
+        $this->likes = $this->post->likes()->count();
+        $this->isLiked = false;
     }
 
     public function render()
