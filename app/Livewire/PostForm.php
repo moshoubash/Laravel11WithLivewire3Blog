@@ -9,16 +9,19 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
-use Livewire\WithFileUploads;
 
     class PostForm extends Component
 {
     // use WithFileUploads;
 
+    #[Validate('required|string|max:255')]
     public $title;
     public $content;
+    
     public $created_at;
     public $categories;
+
+    #[Validate('required|exists:categories,id')]
     public $category_id;
     
     // #[Validate('image|mimes:jpg,png,jpeg,gif,svg|max:1024')]
@@ -35,6 +38,7 @@ use Livewire\WithFileUploads;
         $this->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
+            'category_id' => 'required|exists:categories,id'
         ]);
         
         $res = Http::withHeaders([

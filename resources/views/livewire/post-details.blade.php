@@ -66,8 +66,6 @@
                 <button class="py-2 px-3 bg-blue-500 hover:bg-blue-600 focus:outline-none transition rounded text-white"
                     wire:click="like">
                     <i class="fa fa-thumbs-up"></i> {{ $likes ?? 0 }}
-
-                   
                 </button>
             @endif
         @endauth
@@ -78,6 +76,7 @@
     <div class="prose lg:prose-xl mx-auto max-w-5xl text-lg">
         {!! nl2br(e($post->content)) !!}
     </div>
+
     <div class="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-gray-900 bg-opacity-50" wire:loading>
         <div class="spinner flex justify-center h-full" style="align-items: center !important;">
             <svg aria-hidden="true" class="w-8 h-8 text-white animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

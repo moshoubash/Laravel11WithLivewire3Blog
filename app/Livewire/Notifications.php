@@ -19,6 +19,10 @@ class Notifications extends Component
         auth()->user()->unreadNotifications->markAsRead();
     }
 
+    public function deleteAll() {
+        DB::table('notifications')->where('notifiable_id', auth()->user()->id)->delete();
+    }
+
     public function render()
     {
         return view('livewire.notifications', [

@@ -2,10 +2,22 @@
     @csrf
     <h1 class="text-3xl mb-4">Create Post</h1>
 
+    @error('title')
+        <span class="text-red-500">{{ $message }}</span>
+    @enderror
+
     <input type="text" placeholder="Title" class="border p-2 w-full mb-2 form-control" wire:model="title" />
     
+    @error('content')
+        <span class="text-red-500">{{ $message }}</span>
+    @enderror
+
     <textarea type="text" rows="10" wire:model="content" placeholder="Content" class="border p-2 w-full mb-2 form-control"></textarea>
 
+    @error('category_id')
+        <span class="text-red-500">{{ $message }}</span>
+    @enderror
+    
     <select wire:model="category_id" class="form-control p-2 w-full mb-2 text-gray-500">
         <option value="">Select Category</option>
         @foreach ($categories as $category)
