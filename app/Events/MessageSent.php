@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Broadcast;
 
-class MessageSent implements ShouldBroadcast
+class MessageSent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

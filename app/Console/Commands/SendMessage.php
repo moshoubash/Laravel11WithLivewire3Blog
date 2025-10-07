@@ -13,9 +13,9 @@ class SendMessage extends Command
 
     public function handle()
     {
-        $message = $this->ask('Please enter the message');
-        $email = $this->ask('Please enter the email');
+        // $message = $this->ask('Please enter the message');
+        // $email = $this->ask('Please enter the email');
 
-        broadcast(new MessageSent($message, $email));
+        // broadcast(new MessageSent($message, $email));
     }
 }

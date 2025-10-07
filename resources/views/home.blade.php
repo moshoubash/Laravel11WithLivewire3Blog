@@ -14,8 +14,7 @@
             {{ session('success') }}
         </div>
     @endif
-
-
+    
     <div class="text-center bg-gray-800 text-white mb-10">
         <div class="max-w-full px-6 py-20 text-center">
             <h1 class="text-5xl font-bold">Start writing <span class="bg-white text-gray-800 px-2 rounded">NOW</span></h1>
