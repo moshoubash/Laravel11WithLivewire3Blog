@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
 
 class Notifications extends Component
 {
@@ -21,6 +22,11 @@ class Notifications extends Component
 
     public function deleteAll() {
         DB::table('notifications')->where('notifiable_id', auth()->user()->id)->delete();
+    }
+    
+    #[On('echo-private:notifications,NewLike')]
+    public function newLike() {
+        $this->render();
     }
 
     public function render()

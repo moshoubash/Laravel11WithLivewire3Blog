@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\NewLike;
 use App\Models\Like;
 use App\Notifications\LikeNotification;
 
@@ -17,6 +18,7 @@ class LikeObserver
         $post = $like->post;
 
         $postAuthor->notify(new LikeNotification($postAuthor, $likeUser, $post));
+        broadcast(new NewLike());
     }
 
     /**
