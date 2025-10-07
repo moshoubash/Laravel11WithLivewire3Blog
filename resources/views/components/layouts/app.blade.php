@@ -33,6 +33,10 @@
 
     <script src="https://kit.fontawesome.com/d890c03bb3.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+    <!-- Auto-init Highlight.js -->
     @yield('styles')
 </head>
 
@@ -53,4 +57,9 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
     @yield('scripts')
+    
+    <script>
+        hljs.highlightAll();
+    </script>
+</body>
 </html>

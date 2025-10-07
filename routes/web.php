@@ -1,8 +1,8 @@
 <?php
 
-use App\Livewire\Community;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home;
+use App\Livewire\Chat;
 use App\Livewire\PostDetails;
 use App\Livewire\PostForm;
 use App\Livewire\PostEdit;
@@ -14,7 +14,7 @@ Route::get('/', Home::class)->name('home');
 
 Route::get('/home', Home::class)->name('home');
 
-Route::get('/community', Community::class)->name('community');
+Route::get('/chat', Chat::class)->name('chat');
 
 Route::get('/post/create', PostForm::class)->name('post.create')->middleware('auth');
 

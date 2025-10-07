@@ -16,7 +16,7 @@
             <span style="font-family: Arial; font-weight: bold; letter-spacing: 1px; font-size: 1.7rem;">Blog</span>
         </a>
         <a wire:navigate wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
-        <a wire:navigate wire:current="font-bold" href="/community" class="text-gray-200">Community</a>
+        <a wire:navigate wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
     </div>
 
     {{-- Search-Bar --}}
