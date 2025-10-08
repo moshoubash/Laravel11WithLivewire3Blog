@@ -15,8 +15,10 @@
             </svg>
             <span style="font-family: Arial; font-weight: bold; letter-spacing: 1px; font-size: 1.7rem;">Blog</span>
         </a>
-        <a wire:navigate wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
-        <a wire:navigate wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
+        <div class="hidden md:block">
+            <a wire:navigate wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
+            <a wire:navigate wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
+        </div>
     </div>
 
     {{-- Search-Bar --}}
@@ -34,7 +36,7 @@
                         d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z" />
                 </svg>
 
-                @if($unreadNotifications > 0)
+                @if ($unreadNotifications > 0)
                     <span
                         class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-white bg-red-500 rounded-full -top-2.5 -right-2 dark:bg-red-600">
                         {{ $unreadNotifications }}
@@ -51,26 +53,30 @@
                     Notifications
                 </div>
                 <div class="divide-y divide-gray-100 dark:divide-gray-700">
-                    @if($notifications->count() == 0)
-                        <h2 class="px-4 py-3 text-sm font-medium text-center text-gray-900 dark:text-white bg-gray-700">No notifications yet.</h2>
+                    @if ($notifications->count() == 0)
+                        <h2 class="px-4 py-3 text-sm font-medium text-center text-gray-900 dark:text-white bg-gray-700">No
+                            notifications yet.</h2>
                     @else
-                    @foreach ($notifications as $notification)
-                        <a href="/notifications" class="flex px-4 py-3 {{ $notification->read_at ? 'bg-gray-800' : 'bg-gray-700' }} hover:bg-gray-600">
-                            <div class="shrink-0">
-                                <img class="rounded-full w-11 h-11 border-2 border-white" src="{{ asset('images/avatar.jpg') }}"
-                                    alt="Bonnie image">
-                                <div
-                                    class="absolute flex items-center justify-center w-7 h-7 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
-                                    <i class="fa fa-bell"></i>
+                        @foreach ($notifications as $notification)
+                            <a href="/notifications"
+                                class="flex px-4 py-3 {{ $notification->read_at ? 'bg-gray-800' : 'bg-gray-700' }} hover:bg-gray-600">
+                                <div class="shrink-0">
+                                    <img class="rounded-full w-11 h-11 border-2 border-white"
+                                        src="{{ asset('images/avatar.jpg') }}" alt="Bonnie image">
+                                    <div
+                                        class="absolute flex items-center justify-center w-7 h-7 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800">
+                                        <i class="fa fa-bell"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-full ps-3">
-                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span
-                                        class="font-semibold text-gray-900 dark:text-white">{{ $notification->data['message'] }}</div>
-                                <div class="font-semibold text-xs text-blue-600 dark:text-blue-500">{{ $notification->created_at->diffForHumans() }}</div>
-                            </div>
-                        </a>
-                    @endforeach
+                                <div class="w-full ps-3">
+                                    <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400"><span
+                                            class="font-semibold text-gray-900 dark:text-white">{{ $notification->data['message'] }}
+                                    </div>
+                                    <div class="font-semibold text-xs text-blue-600 dark:text-blue-500">
+                                        {{ $notification->created_at->diffForHumans() }}</div>
+                                </div>
+                            </a>
+                        @endforeach
                     @endif
                 </div>
                 <a href="/notifications"
@@ -89,10 +95,50 @@
 
         {{-- Authentication --}}
         @auth
-            <form action="/logout" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
-            </form>
+            {{-- Auth-Links --}}
+            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
+                class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                type="button">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 me-2 rounded-full" src="{{ asset('images/avatar.jpg') }}" alt="user photo">
+                {{ auth()->user()->name }}
+                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdownAvatarName"
+                class="z-10 hidden bg-gray-800 divide-y divide-gray-100 rounded-lg shadow-sm w-44 border-2 border-gray-700">
+                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div class="font-medium ">{{ auth()->user()->name }}</div>
+                    <div class="truncate">{{ auth()->user()->email }}</div>
+                </div>
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                        <a href="/post/create"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Write</a>
+                    </li>
+                </ul>
+                <div class="py-2">
+                    <form action="/logout" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full text-left">Logout</button>
+                    </form>
+                </div>
+            </div>
         @else
             <div class="d-flex align-items-center">
                 <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>

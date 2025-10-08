@@ -11,24 +11,38 @@ class Chat extends Component
     public $content;
     public $error;
 
+    public $messages;
+
+    public function mount(){
+        $messages = [];
+    }
+
     public function send(){
+        $this->messages[] = [
+            'role' => 'user',
+            'content' => $this->message . ' add .hljs to code block'
+        ];
+
         $res = Http::withHeaders([
             'Authorization' => 'Bearer ' . env('OPEN_ROUTER_KEY'),
             'Content-Type' => 'application/json'
-        ])->post('https://openrouter.ai/api/v1/completions', [
+        ])->post('https://openrouter.ai/api/v1/chat/completions', [
             'model' => env('OPEN_ROUTER_MODEL'),
-            'prompt' => $this->message . ' (support the response with <code></code> highlight.js snippets)',
-            'max_tokens' => 400
+            'messages' => $this->messages,
+            'max_tokens' => env('OPEN_ROUTER_MAX_TOKENS', 1000)
         ]);
 
         $json = $res->json();
+
+        $this->messages[] = [
+            'role' => 'assistant',
+            'content' => $json['choices'][0]['message']['content']
+        ];
 
         if (isset($json['error'])) {
             $this->error = $json['error'];
             return;
         }
-
-        $this->content = $json['choices'][0]['text'];
     }
 
     public function render()

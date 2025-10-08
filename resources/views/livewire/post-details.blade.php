@@ -81,7 +81,9 @@
         @endauth
     </p>
 
-    <img src="{{ $post->photo }}" alt="Post Image" class="mx-auto mb-6 object-cover rounded-lg max-w-5xl">
+    <div class="w-full max-w-5xl mx-auto">
+        <img src="{{ $post->photo }}" alt="Post Image" class="mx-auto mb-6 object-cover rounded-lg w-full">
+    </div>
 
     <div class="prose lg:prose-xl mx-auto max-w-5xl text-lg">
         {!! nl2br(e($post->content)) !!}

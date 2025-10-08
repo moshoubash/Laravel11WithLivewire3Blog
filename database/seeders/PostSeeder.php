@@ -12,7 +12,7 @@ class PostSeeder extends Seeder
         Post::create([
             'title' => 'First Post',
             'slug' => 'first-post',
-            'content' => 'This is the first post',
+            'content' => implode(' ', fake()->paragraphs(5)),
             'user_id' => 1,
             'category_id' => 1,
             'views' => 213,
@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
         Post::create([
             'title' => 'Second Post',
             'slug' => 'second-post',
-            'content' => 'This is the second post',
+            'content' => implode(' ', fake()->paragraphs(5)),
             'user_id' => 1,
             'category_id' => 1,
             'views' => 141,
@@ -32,7 +32,7 @@ class PostSeeder extends Seeder
         Post::create([
             'title' => 'Third Post',
             'slug' => 'third-post',
-            'content' => 'This is the third post',
+            'content' => implode(' ', fake()->paragraphs(5)),
             'user_id' => 1,
             'category_id' => 1,
             'views' => 103,
@@ -42,7 +42,7 @@ class PostSeeder extends Seeder
         Post::create([
             'title' => 'Fourth Post',
             'slug' => 'fourth-post',
-            'content' => 'This is the fourth post',
+            'content' => implode(' ', fake()->paragraphs(5)),
             'user_id' => 1,
             'category_id' => 1,
             'views' => 412,
