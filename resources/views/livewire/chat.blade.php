@@ -1,10 +1,10 @@
-<div class="p-4 min-h-screen bg-gray-800">
-{{-- <div class="p-4 min-h-screen bg-gray-800" style="
+{{-- <div class="p-4 min-h-screen bg-gray-800"> --}}
+<div class="p-4 min-h-screen bg-gray-800" style="
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url({{ asset('images/background2.jpg') }});
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-"> --}}
+">
         @if($message)
             <p class="mb-3 bg-gray-400 text-gray-800 p-4 rounded-xl">{{ $message }}</p>
         @endif

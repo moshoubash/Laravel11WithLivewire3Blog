@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Events\MarkAsRead;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Events\DeleteNotifications;
 use Livewire\Attributes\On;
 
 class Notifications extends Component
@@ -18,10 +20,12 @@ class Notifications extends Component
 
     public function markAllAsRead() {
         auth()->user()->unreadNotifications->markAsRead();
+        broadcast(new MarkAsRead());
     }
 
     public function deleteAll() {
         DB::table('notifications')->where('notifiable_id', auth()->user()->id)->delete();
+        broadcast(new DeleteNotifications());
     }
     
     #[On('echo-private:notifications,NewLike')]

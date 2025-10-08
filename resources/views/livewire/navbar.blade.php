@@ -34,10 +34,10 @@
                         d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z" />
                 </svg>
 
-                @if(auth()->user()->unreadNotifications()->count() > 0)
+                @if($unreadNotifications > 0)
                     <span
                         class="absolute inline-flex items-center justify-center w-4 h-4 text-xs font-semibold text-white bg-red-500 rounded-full -top-2.5 -right-2 dark:bg-red-600">
-                        {{ auth()->user()->unreadNotifications()->count() }}
+                        {{ $unreadNotifications }}
                     </span>
                 @endif
             </button>
@@ -51,10 +51,10 @@
                     Notifications
                 </div>
                 <div class="divide-y divide-gray-100 dark:divide-gray-700">
-                    @if(auth()->user()->notifications()->count() == 0)
+                    @if($notifications->count() == 0)
                         <h2 class="px-4 py-3 text-sm font-medium text-center text-gray-900 dark:text-white bg-gray-700">No notifications yet.</h2>
                     @else
-                    @foreach (auth()->user()->notifications()->latest()->limit(5)->get() as $notification)
+                    @foreach ($notifications as $notification)
                         <a href="/notifications" class="flex px-4 py-3 {{ $notification->read_at ? 'bg-gray-800' : 'bg-gray-700' }} hover:bg-gray-600">
                             <div class="shrink-0">
                                 <img class="rounded-full w-11 h-11 border-2 border-white" src="{{ asset('images/avatar.jpg') }}"
