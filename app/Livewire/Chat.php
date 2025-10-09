@@ -20,7 +20,7 @@ class Chat extends Component
     public function send(){
         $this->messages[] = [
             'role' => 'user',
-            'content' => $this->message . ' add .hljs to code block'
+            'content' => $this->message
         ];
 
         $res = Http::withHeaders([
@@ -29,7 +29,7 @@ class Chat extends Component
         ])->post('https://openrouter.ai/api/v1/chat/completions', [
             'model' => env('OPEN_ROUTER_MODEL'),
             'messages' => $this->messages,
-            'max_tokens' => env('OPEN_ROUTER_MAX_TOKENS', 1000)
+            'max_tokens' => env('OPEN_ROUTER_MAX_TOKENS', 700)
         ]);
 
         $json = $res->json();

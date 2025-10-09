@@ -6,6 +6,7 @@ use App\Livewire\Chat;
 use App\Livewire\PostDetails;
 use App\Livewire\PostForm;
 use App\Livewire\PostEdit;
+use App\Livewire\Profile;
 use App\Livewire\SearchResults;
 use App\Livewire\Notifications;
 use App\Events\MessageSent;
@@ -26,17 +27,11 @@ Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
 
 Route::get('/notifications', Notifications::class)->name('notifications')->middleware('auth');
 
+Route::get('/profile', Profile::class)->name('profile')->middleware('auth');
+
 Route::post('/chat/send', function() {
     broadcast(new MessageSent(request('message'), request('email')));
     return back()->with('success', 'Your message has been sent!');
 });
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
 
 require __DIR__.'/auth.php';
