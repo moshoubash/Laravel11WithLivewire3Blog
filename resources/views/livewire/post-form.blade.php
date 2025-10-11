@@ -27,5 +27,5 @@
 
     {{-- <input type="file" wire:model="photo" class="form-control px-3 py-2 w-full mb-2 text-gray-500 bg-white" /> --}}
 
-    <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white p-2">Submit</button>
+    <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white">Submit</button>
 </form>

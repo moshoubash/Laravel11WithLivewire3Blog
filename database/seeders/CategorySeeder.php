@@ -24,13 +24,13 @@ class CategorySeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'Design',
-            'slug' => 'design'
+            'name' => 'Tools',
+            'slug' => 'tools'
         ]);
 
         Category::create([
-            'name' => 'Art',
-            'slug' => 'art'
+            'name' => 'Code',
+            'slug' => 'code'
         ]);
     }
 }

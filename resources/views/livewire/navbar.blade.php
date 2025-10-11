@@ -126,7 +126,11 @@
                         <a href="#"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                     </li>
-                    @if (auth()->user()->email = 'admin@example.com')
+                    <li>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Statistics</a>
+                    </li>
+                    @if (auth()->user()->is_admin)
                         <li>
                             <a href="/telescope"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Telescope</a>

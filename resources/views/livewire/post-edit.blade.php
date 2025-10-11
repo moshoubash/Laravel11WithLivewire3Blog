@@ -24,6 +24,8 @@
         @endforeach
     </select>
 
-    <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white p-2">Update</button>
-    <a wire:navigate href="/" class="btn bg-gray-500 hover:bg-gray-700 text-white p-2">Back</a>
+    <div class="flex gap-2">
+        <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white">Update</button>
+        <a wire:navigate href="/" class="px-4 py-2 bg-gray-500 hover:bg-gray-700 text-white">Back</a>
+    </div>
 </form>

@@ -44,6 +44,10 @@ class PostEdit extends Component
         return redirect()->route('home')->with('message', 'Post updated successfully.');
     }
 
+    public function goBack(){
+        return redirect()->route('home');
+    }
+
     public function render()
     {
         return view('livewire.post-edit', 

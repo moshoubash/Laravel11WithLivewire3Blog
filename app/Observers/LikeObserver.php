@@ -17,8 +17,8 @@ class LikeObserver
         $likeUser = $like->user;
         $post = $like->post;
 
-        // $postAuthor->notify(new LikeNotification($postAuthor, $likeUser, $post));
-        // broadcast(new NewLike());
+        $postAuthor->notify(new LikeNotification($postAuthor, $likeUser, $post));
+        broadcast(new NewLike());
     }
 
     /**
