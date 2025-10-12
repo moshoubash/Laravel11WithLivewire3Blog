@@ -72,7 +72,7 @@ use Livewire\Attributes\Validate;
 
     public function render()
     {
-        return view('livewire.post-form', [
+        return view('livewire.post.post-form', [
             'categories' => $this->categories
         ]);
     }

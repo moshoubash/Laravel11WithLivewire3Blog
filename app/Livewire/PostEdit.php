@@ -50,7 +50,7 @@ class PostEdit extends Component
 
     public function render()
     {
-        return view('livewire.post-edit', 
+        return view('livewire.post.post-edit', 
             [
                 'categories' => Category::all(),
                 'post' => $this->post

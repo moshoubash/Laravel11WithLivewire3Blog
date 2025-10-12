@@ -12,7 +12,6 @@ use App\Livewire\Notifications;
 use App\Livewire\Stats;
 use App\Livewire\Settings;
 use App\Events\MessageSent;
-use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;

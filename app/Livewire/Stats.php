@@ -22,10 +22,9 @@ class Stats extends Component
         $this->totalLikes = DB::table('posts')->join('likes', 'posts.id', '=', 'likes.post_id')
             ->where('posts.user_id', auth()->user()->id)
             ->count();
-
         $this->averageViews = $this->numberOfPosts ? round($this->totalViews / $this->numberOfPosts, 2) : 0;
 
-        $this->topViewedPosts = DB::table('posts')->select('title', 'views')
+        $this->topViewedPosts = DB::table('posts')->where('user_id', auth()->user()->id)->select('title', 'views')
             ->orderByDesc('views')
             ->limit(5)
             ->get();
@@ -40,6 +39,6 @@ class Stats extends Component
 
     public function render()
     {
-        return view('livewire.stats');
+        return view('livewire.pages.stats');
     }
 }

@@ -69,7 +69,7 @@ class PostDetails extends Component
 
     public function render()
     {
-        return view('livewire.post-details', [
+        return view('livewire.post.post-details', [
             'post' => $this->post,
         ]);
     }

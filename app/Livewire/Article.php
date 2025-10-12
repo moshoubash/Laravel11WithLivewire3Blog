@@ -16,7 +16,7 @@ class Article extends Component
 
     public function render()
     {
-        return view('livewire.article', [
+        return view('livewire.components.article', [
             'post' => $this->post,
         ]);
     }

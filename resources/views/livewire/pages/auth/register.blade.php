@@ -98,7 +98,7 @@ new #[Layout('layouts.guest')] class extends Component
 
     <hr class="my-4">
 
-    <a href="/auth/google/redirect" class="mx-auto px-4 py-2 border flex gap-2 border-slate-200 rounded-lg hover:shadow bg-gray-800 hover:bg-gray-900 text-white transition duration-150 text-center items-center justify-center">
+    <a href="/auth/google/redirect" class="mx-auto px-4 py-2 border flex gap-2 border-slate-200 text-lg hover:shadow bg-gray-800 hover:bg-gray-900 text-white transition duration-150 text-center items-center justify-center">
         <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
         Login with Google
     </a>

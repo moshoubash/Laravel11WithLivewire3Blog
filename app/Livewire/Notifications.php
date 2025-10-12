@@ -35,7 +35,7 @@ class Notifications extends Component
 
     public function render()
     {
-        return view('livewire.notifications', [
+        return view('livewire.pages.notifications', [
             'notifications' => auth()->user()->notifications()->latest()->paginate(10)
         ]);
     }

@@ -27,7 +27,7 @@ class Navbar extends Component
 
     public function render()
     {
-        return view('livewire.navbar', [
+        return view('livewire.components.navbar', [
             'notifications' => $this->notifications,
             'unreadNotifications' => $this->unreadNotifications
         ]);

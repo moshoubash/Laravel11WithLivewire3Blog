@@ -24,6 +24,6 @@ class SearchResults extends Component
     
     public function render()
     {
-        return view('livewire.search-results');
+        return view('livewire.pages.search-results');
     }
 }

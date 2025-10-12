@@ -36,7 +36,7 @@
                 <p class="text-2xl font-bold text-gray-900">{{ $averageViews }}</p>
             </div>
             <div class="w-[50px] h-[50px] bg-gray-800 text-white rounded-full flex items-center justify-center mr-4">
-                <i class="fa fa-book"></i>
+                <i class="fa fa-gauge"></i>
             </div>
         </div>
     </div>

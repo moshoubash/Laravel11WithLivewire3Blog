@@ -10,7 +10,7 @@
         <span class="text-red-500">{{ $message }}</span>
     @enderror
 
-    <input type="text" placeholder="Title" class="border-1 border-gray-400 p-2 w-full mb-4" wire:model="title" />
+    <input type="text" placeholder="Title" class="border-1 border-gray-400 p-2 w-full mb-2" wire:model="title" />
     
     @error('content')
         <span class="text-red-500">{{ $message }}</span>
@@ -18,13 +18,13 @@
 
     <input type="hidden" id="content" name="content" wire:model="content" />
 
-    <div wire:ignore class="bg-white min-h-[200px]" id="editor"></div>
+    <div wire:ignore class="bg-white min-h-[200px] border-1 border-gray-400" id="editor"></div>
 
+    
     @error('category_id')
         <span class="text-red-500">{{ $message }}</span>
     @enderror
-
-    <select wire:model="category_id" class="p-2 w-full mb-2 border-1 border-gray-400 text-gray-500 mt-4">
+    <select wire:model="category_id" class="p-2 w-full mb-2 border-1 border-gray-400 text-gray-500 mt-2 mb-2">
         <option value="">Select Category</option>
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
