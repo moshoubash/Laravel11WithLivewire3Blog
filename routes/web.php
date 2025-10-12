@@ -9,6 +9,7 @@ use App\Livewire\PostEdit;
 use App\Livewire\Profile;
 use App\Livewire\SearchResults;
 use App\Livewire\Notifications;
+use App\Livewire\Stats;
 use App\Events\MessageSent;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,8 @@ Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
 Route::get('/notifications', Notifications::class)->name('notifications')->middleware('auth');
 
 Route::get('/profile', Profile::class)->name('profile')->middleware('auth');
+
+Route::get('/stats', Stats::class)->name('stats')->middleware('auth');
 
 // google register oauth2.0
 

@@ -24,10 +24,10 @@
 
     <div class="fixed bottom-4 w-full mx-auto flex justify-center">
         <form wire:submit.prevent="send" class="flex items-center justify-center">
-            <input type="text" class="min-w-[700px] px-4 py-3 border-2 border-gray-400 h-full"
+            <input type="text" class="min-w-[700px] px-4 py-3 border-2 border-white h-full"
                 placeholder="Write a message" wire:model="message" />
             <button
-                class="min-w-[100px] h-full flex items-center justify-center bg-gray-200 border-2 border-gray-400"><i
+                class="min-w-[100px] h-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white border-2 border-white-400"><i
                     class="fa fa-send"></i></button>
         </form>
     </div>
