@@ -151,8 +151,8 @@
             </div>
         @else
             <div class="d-flex align-items-center">
-                <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm me-2">Login</a>
-                <a href="{{ route('register') }}" class="btn bg-blue-600 hover:bg-blue-700 text-white btn-sm">Register</a>
+                <a href="{{ route('login') }}" class="px-3 py-2 hover:bg-slate-100 hover:text-slate-600 border border-slate-200 me-2">Login</a>
+                <a href="{{ route('register') }}" class="px-3 py-2 bg-blue-600 hover:bg-blue-700 border border-blue-200 text-white btn-sm">Register</a>
             </div>
         @endauth
     </div>

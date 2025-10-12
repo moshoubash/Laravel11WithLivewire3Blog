@@ -96,15 +96,10 @@ new #[Layout('layouts.guest')] class extends Component
         </div>
     </form>
 
-    {{-- google --}}
-    <p class="mt-4 text-center text-gray-600">
-        or with
-    </p>
-
     <hr class="my-4">
 
-    <button wire:click="authWithGoogle" class="mx-auto px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-gray-700 hover:text-gray-900 hover:shadow transition duration-150">
+    <a href="/auth/google/redirect" class="mx-auto px-4 py-2 border flex gap-2 border-slate-200 rounded-lg hover:shadow bg-gray-800 hover:bg-gray-900 text-white transition duration-150 text-center items-center justify-center">
         <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
-        <span>Login with Google</span>
-    </button>
+        Login with Google
+    </a>
 </div>

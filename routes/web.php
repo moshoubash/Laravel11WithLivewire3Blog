@@ -41,6 +41,7 @@ Route::get('/auth/google/redirect', function() {
 
 Route::get('/auth/google/callback', function () {
     $socialiteUser = Socialite::driver('google')->user();
+    
     if (User::where('email', $socialiteUser->email)->exists()) {
         Auth::login(User::where('email', $socialiteUser->email)->first());
         return redirect('/home');

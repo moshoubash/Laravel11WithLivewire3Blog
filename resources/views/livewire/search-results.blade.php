@@ -1,12 +1,12 @@
 <div class="container mx-auto py-10 min-h-screen">
     <h1 class="text-center mb-xl-3" style="font-weight: bold; font-size: 3rem;">Search results</h1>
 
-    <div class="flex gap-6 justify-center items-center max-w-lg px-2 py-1 mx-auto mb-6 border-2 border-gray-800 rounded-lg" id="filter-bar">
+    {{-- <div class="flex gap-6 justify-center items-center max-w-lg px-2 py-1 mx-auto mb-6 border-2 border-gray-800 rounded-lg" id="filter-bar">
         <button class="text-md text-gray-700 hover:text-gray-900 transition px-2 rounded">By Date</button>
         <button class="text-md text-gray-700 hover:text-gray-900 transition px-2 rounded">By Views</button>
         <button class="text-md text-gray-700 hover:text-gray-900 transition px-2 rounded">By Category</button>
         <button class="text-md text-gray-700 hover:text-gray-900 transition px-2 rounded">By Author</button>
-    </div>
+    </div> --}}
 
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 py-6">
         @foreach ($posts as $post)

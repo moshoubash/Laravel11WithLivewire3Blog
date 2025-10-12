@@ -86,6 +86,6 @@
     </div>
 
     <div class="prose lg:prose-xl mx-auto max-w-5xl text-lg">
-        {!! nl2br(e($post->content)) !!}
+        {!! $post->content !!}
     </div>
 </div>
