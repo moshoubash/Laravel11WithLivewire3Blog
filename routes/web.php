@@ -10,6 +10,10 @@ use App\Livewire\Profile;
 use App\Livewire\SearchResults;
 use App\Livewire\Notifications;
 use App\Events\MessageSent;
+use App\Http\Controllers\SocialiteController;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 Route::get('/', Home::class)->name('home');
 
@@ -28,6 +32,34 @@ Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
 Route::get('/notifications', Notifications::class)->name('notifications')->middleware('auth');
 
 Route::get('/profile', Profile::class)->name('profile')->middleware('auth');
+
+// google register oauth2.0
+
+Route::get('/auth/google/redirect', function() {
+    return Socialite::driver("google")->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $socialiteUser = Socialite::driver('google')->user();
+    if (User::where('email', $socialiteUser->email)->exists()) {
+        Auth::login(User::where('email', $socialiteUser->email)->first());
+        return redirect('/home');
+    }
+
+    $user = User::updateOrCreate([
+        'name' => $socialiteUser->name,
+        'email' => $socialiteUser->email,
+        'password' => bcrypt('1'),
+        'is_admin' => false,
+        'provider' => "google",
+        'provider_id' => $socialiteUser->id,
+        'registration_domain' => env('APP_URL'),
+    ]);
+ 
+    Auth::login($user);
+ 
+    return redirect('/home');
+});
 
 Route::post('/chat/send', function() {
     broadcast(new MessageSent(request('message'), request('email')));

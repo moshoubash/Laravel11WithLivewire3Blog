@@ -22,6 +22,10 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->redirectIntended(default: route('home', absolute: false), navigate: true);
     }
+
+    public function authWithGoogle(){
+        return redirect()->route('auth.google');
+    }
 }; ?>
 
 <div>
@@ -56,7 +60,7 @@ new #[Layout('layouts.guest')] class extends Component
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex items-center justify-between mt-4">
             @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
                     {{ __('Forgot your password?') }}
@@ -68,4 +72,21 @@ new #[Layout('layouts.guest')] class extends Component
             </x-primary-button>
         </div>
     </form>
+
+    {{-- google --}}
+    <p class="mt-4 text-center text-gray-600">
+        or with
+    </p>
+
+    <hr class="my-4">
+
+    {{-- <button wire:click="authWithGoogle" class="mx-auto px-4 py-2 border flex gap-2 border-slate-200 rounded-lg text-gray-700 hover:text-gray-900 hover:shadow transition duration-150">
+        <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+        <span>Login with Google</span>
+    </button> --}}
+
+    <a href="/auth/google/redirect" class="btn btn-google">
+        Login with Google
+    </a>
+
 </div>
