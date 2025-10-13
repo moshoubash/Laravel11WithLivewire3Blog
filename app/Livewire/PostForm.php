@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Post;
 use Illuminate\Support\Facades\Http;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
 
@@ -66,6 +68,10 @@ use Livewire\Attributes\Validate;
         }
 
         $this->reset(['title', 'content', 'category_id']);
+
+        if(Redis::exists('posts')){
+            Redis::del('posts');
+        }
 
         return redirect()->to('/');
     }

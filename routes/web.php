@@ -16,27 +16,23 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 
-Route::get('/', Home::class)->name('home');
-
-Route::get('/home', Home::class)->name('home');
-
-Route::get('/chat', Chat::class)->name('chat');
-
-Route::get('/post/create', PostForm::class)->name('post.create')->middleware('auth');
-
-Route::get('/post/{slug}', PostDetails::class)->name('post.details');
-
-Route::get('/post/{slug}/edit', PostEdit::class)->name('post.edit')->middleware('auth');
-
-Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
-
-Route::get('/notifications', Notifications::class)->name('notifications')->middleware('auth');
-
-Route::get('/profile', Profile::class)->name('profile')->middleware('auth');
-
-Route::get('/stats', Stats::class)->name('stats')->middleware('auth');
-
-Route::get('/settings', Settings::class)->name('settings')->middleware('auth');
+Route::middleware('throttle:limiter', function () {
+    Route::get('/', Home::class);
+    Route::get('/home', Home::class)->name('home');
+    Route::get('/chat', Chat::class)->name('chat');
+    Route::get('/post/{slug}', PostDetails::class)->name('post.details');
+    Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
+    
+    
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/post/{slug}/edit', PostEdit::class)->name('post.edit');
+        Route::get('/post/create', PostForm::class)->name('post.create');
+        Route::get('/notifications', Notifications::class)->name('notifications');
+        Route::get('/profile', Profile::class)->name('profile');
+        Route::get('/stats', Stats::class)->name('stats');
+        Route::get('/settings', Settings::class)->name('settings');
+    });
+});
 
 // google register oauth2.0
 
@@ -70,6 +66,6 @@ Route::get('/auth/google/callback', function () {
 Route::post('/chat/send', function() {
     broadcast(new MessageSent(request('message'), request('email')));
     return back()->with('success', 'Your message has been sent!');
-});
+})->middleware('throttle:5,1')->name('chat.send');
 
 require __DIR__.'/auth.php';

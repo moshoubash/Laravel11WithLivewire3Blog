@@ -8,7 +8,6 @@ use App\Observers\LikeObserver;
 use Illuminate\Support\Facades\Event;
 use App\Events\UserRegistered;
 use App\Listeners\SendWelcomeMessage;
-use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use App\Models\Like;
+use Illuminate\Support\Facades\Redis;
 
 class PostDetails extends Component
 {
@@ -26,6 +27,11 @@ class PostDetails extends Component
             }
             $post->delete();
             session()->flash('message', 'Post deleted successfully.');
+            
+            if(Redis::exists('posts')){
+                Redis::del('posts');
+            }
+            
             return redirect()->route('home');
         } else {
             session()->flash('error', 'Post not found.');

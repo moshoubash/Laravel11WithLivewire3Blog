@@ -17,7 +17,7 @@ class Home extends Component
         if (!$this->posts) {
             $this->posts = Post::all()->sortByDesc('created_at');
             Redis::set('posts', $this->posts->toJson());
-            Redis::expire('posts', 900);
+            Redis::expire('posts', 60);
         }
     }
 
