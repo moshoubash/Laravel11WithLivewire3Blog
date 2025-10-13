@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class PostEdit extends Component
@@ -20,7 +21,9 @@ class PostEdit extends Component
 
     public function mount($slug){
         $this->post = Post::where('slug', $slug)->first();
-        $this->categories = Category::all();
+        $this->categories = Cache::remember('categories', 60*60*24, function() {
+            return Category::all();
+        });
 
         $this->title = $this->post->title;
         $this->content = $this->post->content;

@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class Stats extends Component
 {
@@ -24,10 +26,17 @@ class Stats extends Component
             ->count();
         $this->averageViews = $this->numberOfPosts ? round($this->totalViews / $this->numberOfPosts, 2) : 0;
 
-        $this->topViewedPosts = DB::table('posts')->where('user_id', auth()->user()->id)->select('title', 'views')
-            ->orderByDesc('views')
-            ->limit(5)
-            ->get();
+        Redis::get('topViewedPosts') ? $this->topViewedPosts = collect(json_decode(Redis::get('topViewedPosts'))) : null;
+
+        if($this->topViewedPosts === null) {
+            $this->topViewedPosts = DB::table('posts')->where('user_id', auth()->user()->id)->select('title', 'views')
+                    ->orderByDesc('views')
+                    ->limit(5)
+                    ->get();
+
+            Redis::set('topViewedPosts', $this->topViewedPosts);
+            Redis::expire('topViewedPosts', 100);
+        }
 
         $this->topViewedPosts = $this->topViewedPosts->map(function ($post) {
             return [

@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class SearchResults extends Component
 {
@@ -19,7 +21,13 @@ class SearchResults extends Component
                     select('posts.*', 'categories.name as category_name', 'users.name as user_name')->
                     get();
 
-        $this->posts = $posts;
+        Redis::get('search_results_' . $q) ? $this->posts = collect(json_decode(Redis::get('search_results_' . $q))) : $this->posts = [];
+        
+        if(empty($this->posts)){
+            Redis::set('search_results_' . $q, json_encode($posts));
+            Redis::expire('search_results_' . $q, 300);
+            $this->posts = $posts;
+        }
     }
     
     public function render()

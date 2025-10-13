@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Events\DeleteNotifications;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\On;
 
 class Notifications extends Component
