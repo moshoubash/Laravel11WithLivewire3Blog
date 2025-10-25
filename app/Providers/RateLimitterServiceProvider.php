@@ -15,7 +15,7 @@ class RateLimitterServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('limiter', function (Request $request) {
-            return Limit::perMinute(10)->by($request->user() ? $request->user()->id : $request->ip());
+            return Limit::perMinute(60)->by($request->user() ? $request->user()->id : $request->ip());
         });
     }
 }

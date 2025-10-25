@@ -42,14 +42,15 @@ class PostDetails extends Component
     public function mount($slug)
     {
         $this->post = Post::where('slug', $slug)->first();
-        $this->isLiked = $this->post->likes()->where('user_id', auth()->id())->exists();
-        $this->likes = $this->post->likes()->count();
 
         if (!$this->post) {
             session()->flash('error', 'Post not found.');
             return redirect()->route('home');
         }
-        
+
+        $this->isLiked = $this->post->likes()->where('user_id', auth()->id())->exists();
+        $this->likes = $this->post->likes()->count();
+
         $this->post->views += 1;
         $this->post->save();
     }

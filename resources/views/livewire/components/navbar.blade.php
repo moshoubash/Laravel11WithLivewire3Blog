@@ -137,7 +137,7 @@
                         </li>
                     @endif
                     <li>
-                        <a href="/post/create"
+                        <a href="/posts/create"
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Write</a>
                     </li>
                 </ul>

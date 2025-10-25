@@ -22,10 +22,10 @@ Route::group(['middleware' => ['throttle:limiter']], function () {
     Route::get('/chat', Chat::class)->name('chat');
     Route::get('/post/{slug}', PostDetails::class)->name('post.details');
     Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
-    
+
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/post/{slug}/edit', PostEdit::class)->name('post.edit');
-        Route::get('/post/create', PostForm::class)->name('post.create');
+        Route::get('/posts/create', PostForm::class)->name('post.create');
         Route::get('/notifications', Notifications::class)->name('notifications');
         Route::get('/profile', Profile::class)->name('profile');
         Route::get('/stats', Stats::class)->name('stats');
