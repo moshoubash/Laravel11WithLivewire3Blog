@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white p-3 mb-3 d-flex justify-content-between"
     style="margin-bottom: 0 !important;">
     <div class="flex items-center gap-2">
-        <a wire:navigate class="navbar-brand fw-bold flex items-center gap-2" href="{{ route('home') }}">
+        <a class="navbar-brand fw-bold flex items-center gap-2" href="{{ route('home') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
                 <path
                     d="M21.1938 2.80624C22.2687 3.88124 22.2687 5.62415 21.1938 6.69914L20.6982 7.19469C20.5539 7.16345 20.3722 7.11589 20.1651 7.04404C19.6108 6.85172 18.8823 6.48827 18.197 5.803C17.5117 5.11774 17.1483 4.38923 16.956 3.8349C16.8841 3.62781 16.8366 3.44609 16.8053 3.30179L17.3009 2.80624C18.3759 1.73125 20.1188 1.73125 21.1938 2.80624Z"
@@ -16,8 +16,8 @@
             <span style="font-family: Arial; font-weight: bold; letter-spacing: 1px; font-size: 1.7rem;">Blog</span>
         </a>
         <div class="hidden md:block">
-            <a wire:navigate wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
-            <a wire:navigate wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
+            <a wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
+            <a wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
         </div>
     </div>
 
