@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', function () {
         Auth::logout();
-        return back()->with('message', 'You have been logged out.');
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/home')->with('message', 'You have been logged out.');
     })->name('logout');
 });
