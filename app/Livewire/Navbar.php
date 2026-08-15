@@ -6,12 +6,16 @@ use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
+use App\Models\Category;
+
 class Navbar extends Component
 {
     public $notifications;
     public $unreadNotifications;
+    public $categories;
 
     public function mount() {
+        $this->categories = Category::all();
         if(auth()->check()){
             $this->notifications = auth()->user()->notifications()->latest()->limit(5)->get();
             $this->unreadNotifications = auth()->user()->unreadNotifications()->count();
@@ -30,7 +34,8 @@ class Navbar extends Component
     {
         return view('livewire.components.navbar', [
             'notifications' => $this->notifications,
-            'unreadNotifications' => $this->unreadNotifications
+            'unreadNotifications' => $this->unreadNotifications,
+            'categories' => $this->categories
         ]);
     }
 }

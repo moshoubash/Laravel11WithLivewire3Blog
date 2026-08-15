@@ -54,7 +54,7 @@
 
     <p class="text-center mb-6 text-lg text-gray-600"><i class="fa fa-user"></i> {{ $post->user->name }} - <i
             class="fa fa-eye"></i> {{ $post->views }} - <i class="fa fa-calendar"></i> {{ $post->created_at }} - <i
-            class="fa fa-tag"></i> {{ $post->category->name }}
+            class="fa fa-tag"></i> <a href="/category/{{ $post->category->slug }}" class="hover:underline text-blue-600">{{ $post->category->name }}</a>
         @auth
             -
             @if ($isLiked)

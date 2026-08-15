@@ -11,6 +11,7 @@ use App\Livewire\SearchResults;
 use App\Livewire\Notifications;
 use App\Livewire\Stats;
 use App\Livewire\Settings;
+use App\Livewire\CategoryPosts;
 use App\Events\MessageSent;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -21,6 +22,7 @@ Route::group(['middleware' => ['throttle:limiter']], function () {
     Route::get('/home', Home::class)->name('home');
     Route::get('/chat', Chat::class)->name('chat');
     Route::get('/post/{slug}', PostDetails::class)->name('post.details');
+    Route::get('/category/{slug}', CategoryPosts::class)->name('category.posts');
     Route::get('/search/results/{q}', SearchResults::class)->name('search.results');
 
     Route::group(['middleware' => ['auth']], function () {

@@ -15,9 +15,27 @@
             </svg>
             <span style="font-family: Arial; font-weight: bold; letter-spacing: 1px; font-size: 1.7rem;">Blog</span>
         </a>
-        <div class="hidden md:block">
-            <a wire:current="font-bold" href="/home" class="text-gray-200">Home</a>
-            <a wire:current="font-bold" href="/chat" class="text-gray-200">Chat</a>
+        <div class="hidden md:flex items-center gap-3">
+            <a wire:current="font-bold" href="/home" class="text-gray-200 me-2">Home</a>
+            <a wire:current="font-bold" href="/chat" class="text-gray-200 me-2">Chat</a>
+
+            @if(isset($categories) && count($categories) > 0)
+                <button id="dropdownCategoriesButton" data-dropdown-toggle="dropdownCategories" class="text-gray-200 hover:text-white inline-flex items-center gap-1 text-sm font-medium focus:outline-none" type="button">
+                    Categories
+                    <svg class="w-2.5 h-2.5 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                    </svg>
+                </button>
+                <div id="dropdownCategories" class="z-20 hidden w-44 bg-gray-800 divide-y divide-gray-100 rounded-lg shadow-sm border border-gray-700">
+                    <ul class="py-2 text-sm text-gray-200">
+                        @foreach($categories as $cat)
+                            <li>
+                                <a href="/category/{{ $cat->slug }}" class="block px-4 py-2 hover:bg-gray-700 hover:text-white">{{ $cat->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 

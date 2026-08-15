@@ -14,7 +14,7 @@
         <p class="text-gray-500"> <i class="fa fa-calendar"></i> {{ $post->created_at }}</p>
         <p class="text-gray-500"><i class="fa fa-user"></i> {{ $post->user->name }}</p>
         <p class="text-gray-500"><i class="fa fa-eye"></i> {{ $post->views }} views</p>
-        <p class="text-gray-500"><i class="fa fa-tag"></i> {{ $post->category->name }}</p>
+        <p class="text-gray-500"><i class="fa fa-tag"></i> <a href="/category/{{ $post->category->slug }}" class="hover:underline text-blue-600">{{ $post->category->name }}</a></p>
         <p class="text-gray-500"><i class="fa fa-heart"></i> {{ $post->likes->count() }} likes</p>
     </div>
 </div>
